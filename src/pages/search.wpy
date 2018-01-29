@@ -1,0 +1,105 @@
+<style lang="less">
+    .content{
+        padding:10rpx;
+        .search{
+            display: flex;
+            align-items: center;
+            margin:0 auto;
+            width: 680rpx;
+            .search_content{
+                display: flex;
+                align-items: center;
+                border-radius: 300rpx;
+                color: #333;
+                width:560rpx;
+                background: #efefef;
+                padding: 5rpx 12rpx;
+                height:65rpx;
+                .search_input{
+                    font-size: 28rpx;
+                    width:100%;
+                }
+            }
+            .btn{
+                width: 120rpx;
+                height: 65rpx;
+                font-size: 28rpx;
+                line-height: 65rpx;
+                margin-left: 20rpx;
+                padding:0 5rpx;
+            }
+        }
+    }
+    .history {
+        padding: 20px 27px;
+    }
+    .doc {
+        color: #999;
+        font-size: 26rpx;
+    }
+    .lable {
+        margin-top: 20rpx;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-left: -20rpx;
+        .child {
+            background: #dedede;
+            padding: 10rpx 20rpx;
+            border-radius: 300rpx;
+            margin-left: 20rpx;
+            font-size: 26rpx;
+            margin-top: 5rpx;
+            color: #000;
+        }
+    }
+    .btn_box {
+        width: 377rpx;
+        margin: 0 auto;
+        padding-top: 88rpx;
+        .button {
+            color: #999;
+        }
+    }
+    .active {
+        border: 1px solid #f23737;
+        color: #f23737;
+    }
+
+</style>
+<template>
+    <view class="container">
+        <view class="content">
+            <view class="search">
+                <view class="search_content">
+                    <i class="iconfont icon-search"></i>
+                    <input type="text" class="search_input" placeholder="搜索商品">
+                </view>
+                <button class="btn btn-cancel">取消 </button>
+            </view>
+        </view>
+        <view class="history">
+            <view class="doc">历史记录</view>
+            <view class="lable"></view>
+            <view class="btn_box">
+                <view class="button type_empity">清除历史记录</view>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  // import List from '../components/list'
+  // import Panel from '@/components/panel' // alias example
+  // import Counter from 'counter' // alias example
+  // import Group from '../components/group'
+  // import Toast from 'wepy-com-toast'
+  // import testMixin from '../mixins/test'
+
+  export default class Search extends wepy.page {
+    config = {
+      navigationBarTitleText: '搜索'
+    }
+  }
+</script>

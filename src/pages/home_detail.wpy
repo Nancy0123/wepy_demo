@@ -1,0 +1,126 @@
+<style lang="less">
+    page {
+        background: #fff;
+    }
+
+    .img_box {
+        width: 100%;
+        height: 370rpx;
+        background: #000;
+    }
+
+    .discover_img {
+        width: 100%;
+        height: 370rpx;
+    }
+
+    .info {
+        margin-top: 30rpx;
+        padding: 0rpx 30rpx;
+        .title {
+            margin-bottom: 20rpx;
+            color: #000;
+        }
+        .doc {
+            color: #000000;
+            padding-top: 15rpx;
+            display: flex;
+            align-items: center;
+            .lx {
+                font-size: 20rpx;
+                margin-right: 20rpx;
+            }
+        }
+    }
+
+</style>
+<template>
+    <view class="item">
+        <view class="img_box">
+            <image class="discover_img" src="{{cate.logo}}"></image>
+        </view>
+        <view class="info">
+            <view class="title">{{cate.name}}</view>
+            <view wx:for="{{cate.attrs}}" wx:key="item">
+                <view class="doc"><i class="lx">◆</i> {{item.attrName.attrName}}：
+                    <view wx:for="{{item.attrValList}}" wx:key="item">{{item.attrVal}} </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="fifler">
+        <filterBar @currentType.user="currentType"></filterBar>
+    </view>
+    <view class="shop_list">
+        <!--矩阵商品列表模块-->
+        <shopGridList :list.sync="list"></shopGridList>
+        <!--<shopGridList :purchasetype.sync="purchasetype" :list.sync="list"></shopGridList>-->
+        <!--加载更多时动画-->
+        <!--<bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>-->
+        <!--暂无数据显示-->
+        <!--<placeholder :show.sync="is_empty" message="暂无发现数据"></placeholder>-->
+    </view>
+</template>
+<script>
+  import wepy from 'wepy'
+  import api from '../api/api'
+  import filterBar from '../components/filterBar'
+  import shopGridList from '../components/shop_grid_list'
+
+  export default class homeDetail extends wepy.page {
+    config = {}
+    data = {
+      cateCode: '',
+      cate: {},
+      sort: 1,
+      skuval: '',
+      list: []
+    }
+    components = {
+      filterBar: filterBar,
+      shopGridList: shopGridList
+    }
+
+    async getHostGoodsList (currentPage, size) {
+      const json = await api.hostGoodsList({
+        query: {
+          page: currentPage || 1,
+          size: size || 10,
+          cateCode: '020',
+          sort: this.sort,
+          skuval: this.skuval
+        }
+      })
+      console.log(json)
+      if (json.data.code == 0) {
+        this.cate = json.data.category
+        this.list = json.data.list
+      }
+      this.$apply()
+    }
+
+    onLoad (options) {
+      this.cateCode = options.code
+      this.getHostGoodsList()
+    }
+
+    methods = {
+      currentType (options) {
+        var name = options.name
+        var type = options.type
+        if (name == 'zonghe') {
+          this.sort = -1
+        } else if (name == 'sale') {
+          this.sort = 3
+        } else if (name == 'price') {
+          if (type == 'desc') {
+            this.sort = 2
+          } else if (type == 'asc') {
+            this.sort = 1
+          }
+        }
+        this.getHostGoodsList()
+      }
+    }
+  }
+</script>

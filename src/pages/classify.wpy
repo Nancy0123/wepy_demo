@@ -1,0 +1,110 @@
+<style lang="less">
+    .classify{
+        display: flex;
+        position: relative;
+        .classify_category{
+            width: 200rpx;
+            position: relative;
+            z-index: 1;
+            .name{
+                text-align: center;
+                height: 100rpx;
+                line-height: 100rpx;
+                color:#666;
+                font-size:28rpx;
+            }
+            .active{
+                border-left: 6rpx solid #ff6a3c;
+                background: #fff;
+                color: #ff6a3c;
+            }
+        }
+        .classify_detail{
+            position: relative;
+            z-index:999;
+            background: #fff;
+            padding:15rpx 10rpx 10rpx 30rpx;
+            .children{
+                display: flex;
+                flex-wrap: wrap;
+                margin: 20rpx 0;
+                .children_item{
+                    height: 200rpx;
+                    width: 170rpx;
+                    text-align: center;
+                    .child_img{
+                        width: 60px;
+                        height:60px;
+                    }
+                    .child_name{
+                        font-size:26rpx;
+                        color: #666;
+                        width: 170rpx;
+                    }
+                }
+            }
+        }
+    }
+</style>
+<template>
+    <view class="top_search">
+        <view class="search_read_only">
+            <navigator class="search_content" url="/pages/search">
+                <i class="iconfont icon-search"></i>
+                <view class="search_input">搜索商品</view>
+            </navigator>
+        </view>
+    </view>
+    <view class="classify" style="height:505px">
+        <scroll-view class="classify_category">
+            <view class="name active">上衣</view>
+            <view class="name">裤子</view>
+            <view class="name">裙子</view>
+            <view class="name">鞋</view>
+        </scroll-view>
+        <scroll-view class="classify_detail">
+            <view class="children">
+                <navigator class="children_item" url="">
+                    <image src="" class="child_img"></image>
+                    <view class="child_name">T恤</view>
+                </navigator>
+                <navigator class="children_item" url="">
+                    <image src="" class="child_img"></image>
+                    <view class="child_name">风衣</view>
+                </navigator>
+                <navigator class="children_item" url="">
+                    <image src="" class="child_img"></image>
+                    <view class="child_name">衬衫</view>
+                </navigator>
+                <navigator class="children_item" url="">
+                    <image src="" class="child_img"></image>
+                    <view class="child_name">针织衫</view>
+                </navigator>
+                <navigator class="children_item" url="">
+                    <image src="" class="child_img"></image>
+                    <view class="child_name">卫衣</view>
+                </navigator>
+                <navigator class="children_item" url="">
+                    <image src="" class="child_img"></image>
+                    <view class="child_name">外套</view>
+                </navigator>
+            </view>
+        </scroll-view>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  // import List from '../components/list'
+  // import Panel from '@/components/panel' // alias example
+  // import Counter from 'counter' // alias example
+  // import Group from '../components/group'
+  // import Toast from 'wepy-com-toast'
+  // import testMixin from '../mixins/test'
+
+  export default class Classify extends wepy.page {
+    config = {
+      navigationBarTitleText: '分类'
+    }
+  }
+</script>

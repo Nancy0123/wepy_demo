@@ -1,0 +1,57 @@
+<style lang="less">
+    .recommend_list{
+        width: 100%;
+        display: flex;
+        justify-content:space-between;
+        flex-wrap:wrap;
+        padding:0 15rpx;
+        box-sizing:border-box;
+        .recommend_item{
+            width: 355rpx;
+            height: 450rpx;
+            background: #fff;
+            margin-bottom: 15rpx;
+            .recommend_image{
+                width: 355rpx;
+                height: 355rpx;
+            }
+            .recommend_name{
+                font-size: 24rpx;
+                color:#000;
+                padding: 0 10rpx;
+            }
+            .recommend_price{
+                display: flex;
+                justify-content: space-between;
+                padding: 0 10rpx;
+                text{
+                    font-size: 24rpx;
+                    &:first-child{
+                        color:#b55555;
+                    }
+                }
+            }
+        }
+    }
+</style>
+<template>
+    <view class="recommend_list">
+        <navigator wx:for="{{recommendList}}" wx:key="{{item.id}}" url="/pages/goods_detail?id={{item.id}}">
+            <view class="recommend_item" >
+                <image src="{{item.image}}" class="recommend_image"></image>
+                <view class="recommend_name">{{item.name}}</view>
+                <view class="recommend_price">
+                    <text>{{item.price}}</text><text>销量{{item.number}}件</text>
+                </view>
+            </view>
+        </navigator>
+    </view>
+</template>
+<script>
+    import wepy from 'wepy'
+    export default class Recommend extends wepy.component {
+      props = {
+        recommendList: []
+      }
+    }
+</script>
