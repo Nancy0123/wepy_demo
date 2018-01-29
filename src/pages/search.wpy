@@ -73,7 +73,7 @@
             <view class="search">
                 <view class="search_content">
                     <i class="iconfont icon-search"></i>
-                    <input type="text" class="search_input" placeholder="搜索商品">
+                    <input type="text" class="search_input" placeholder="搜索商品"/>
                 </view>
                 <button class="btn btn-cancel">取消 </button>
             </view>
